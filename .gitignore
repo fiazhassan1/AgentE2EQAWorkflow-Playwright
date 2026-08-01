@@ -1,8 +1,16 @@
 
 # Playwright
 node_modules/
-/test-results/
+/test-results/*
+!/test-results/
+!/test-results/.last-run.json
+!/test-results/SCRUM-101-checkout-test-report.md
+!/test-results/SCRUM-101-exploratory-findings.md
 /playwright-report/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+.vscode/
+.mcp.json
+.claude/
+.playwright-mcp/

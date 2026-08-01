@@ -1,6 +1,6 @@
-const { test, expect } = require('@playwright/test');
+import { test, expect, Page } from '@playwright/test';
 
-async function login(page) {
+async function login(page: Page) {
   await page.goto('https://www.saucedemo.com');
   await page.locator('#user-name').fill('standard_user');
   await page.locator('#password').fill('secret_sauce');
