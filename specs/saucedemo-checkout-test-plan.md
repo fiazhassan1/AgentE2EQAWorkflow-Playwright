@@ -34,18 +34,31 @@ Validate the end-to-end checkout workflow for SauceDemo based on SCRUM-101 accep
 - The Checkout button navigates to the information form.
 
 ### TC02 - Checkout information validation
-**Purpose:** Ensure required checkout fields are enforced.
+**Purpose:** Ensure required checkout fields are enforced, one at a time.
 
 **Steps:**
 1. Sign in and add an item to the cart.
 2. Open the cart and begin checkout.
-3. Leave all checkout fields empty.
+3. Leave First Name empty (Last Name and Postal Code filled) and click Continue.
+4. Leave Last Name empty (First Name and Postal Code filled) and click Continue.
+5. Leave Postal Code empty (First Name and Last Name filled) and click Continue.
+
+**Expected Results:**
+- Each case shows its own explicit required-field error message ("First Name is required", "Last Name is required", "Postal Code is required").
+- The user remains on the checkout information page in every case.
+
+### TC02b - Checkout information accepts special characters
+**Purpose:** Document that SauceDemo does not enforce a format on the checkout fields (no client-side pattern/regex validation), only presence.
+
+**Steps:**
+1. Sign in and add an item to the cart.
+2. Open the cart and begin checkout.
+3. Enter values containing spaces, hyphens, apostrophes, digits, and symbols in First Name, Last Name, and Postal Code.
 4. Click Continue.
 
 **Expected Results:**
-- An error message is displayed.
-- The user remains on the checkout information page.
-- The required field message is explicit.
+- No validation error is shown.
+- The user advances to the checkout overview page.
 
 ### TC03 - Complete checkout happy path
 **Purpose:** Confirm a valid order can be completed successfully.
@@ -64,18 +77,35 @@ Validate the end-to-end checkout workflow for SauceDemo based on SCRUM-101 accep
 - A success message and Back Home button are visible.
 
 ### TC04 - Checkout cancellation flow
-**Purpose:** Verify users can cancel checkout at an intermediate step.
+**Purpose:** Verify users can cancel checkout at each intermediate step.
+
+**Steps (from checkout information):**
+1. Sign in and add an item to the cart.
+2. Open the cart and start checkout.
+3. Click Cancel on the checkout information page.
+
+**Steps (from checkout overview):**
+1. Sign in and add an item to the cart.
+2. Open the cart and start checkout.
+3. Enter personal details and continue to the overview page.
+4. Click Cancel on the overview page.
+
+**Expected Results:**
+- In both cases, the user is returned to the cart page.
+- The cart contents (item and cart badge count) remain intact.
+
+### TC05 - Cart clears after order completion
+**Purpose:** Verify the cart is emptied once an order is finished (Business Rule 4).
 
 **Steps:**
 1. Sign in and add an item to the cart.
-2. Open the cart and start checkout.
-3. Enter personal details.
-4. Continue to the overview page.
-5. Click Cancel.
+2. Complete the checkout flow through Finish.
+3. Observe the confirmation page.
+4. Click Back Home.
 
 **Expected Results:**
-- The user is returned to the cart page.
-- The cart contents remain intact.
+- No cart badge is shown on the confirmation page.
+- After returning to the products page, no cart badge is shown (cart is empty).
 
 ## Test Data
 - Valid first name: Jane
