@@ -111,3 +111,23 @@ Validate the end-to-end checkout workflow for SauceDemo based on SCRUM-101 accep
 - Valid first name: Jane
 - Valid last name: Doe
 - Valid postal code: 12345
+
+## Supplementary Scenarios (beyond SCRUM-101 scope)
+
+These extend coverage into login and multi-item cart handling, which the checkout
+flow depends on but which SCRUM-101's acceptance criteria don't explicitly cover.
+Automated in `tests/saucedemo-checkout/login.spec.ts` and `cart.spec.ts`.
+
+### TC06 - Login negative paths
+- Invalid username/password combination is rejected with an explicit error.
+- `locked_out_user` is rejected with a locked-out error.
+- Empty username / empty password are each rejected with a field-specific error.
+- Logging out returns the user to the login page, and directly navigating to a
+  protected page afterward (e.g. `/inventory.html`) is blocked with an error
+  rather than silently succeeding.
+
+### TC07 - Multi-item cart
+- Adding a second product increments the cart badge; removing one decrements it.
+- Cart page lists all added items; checkout overview shows correct item total,
+  tax, and total for multiple products.
+- Removing an item from the cart page updates the item list, badge, and totals.
