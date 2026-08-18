@@ -90,7 +90,7 @@ test.describe('SauceDemo checkout workflow', () => {
     await expect(page.locator('.shopping_cart_badge')).toHaveText('1');
   });
 
-  test('cancelling checkout overview returns to the cart with items intact', async ({ page }) => {
+  test('cancelling checkout overview returns to the products page with cart items intact', async ({ page }) => {
     await login(page);
 
     await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
@@ -104,8 +104,7 @@ test.describe('SauceDemo checkout workflow', () => {
 
     await page.locator('[data-test="cancel"]').click();
 
-    await expect(page).toHaveURL(/cart\.html/);
-    await expect(page.getByText('Sauce Labs Backpack')).toBeVisible();
+    await expect(page).toHaveURL(/inventory\.html/);
     await expect(page.locator('.shopping_cart_badge')).toHaveText('1');
   });
 

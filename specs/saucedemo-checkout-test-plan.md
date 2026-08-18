@@ -91,8 +91,10 @@ Validate the end-to-end checkout workflow for SauceDemo based on SCRUM-101 accep
 4. Click Cancel on the overview page.
 
 **Expected Results:**
-- In both cases, the user is returned to the cart page.
-- The cart contents (item and cart badge count) remain intact.
+- Cancelling from checkout information returns the user to the cart page.
+- Cancelling from checkout overview returns the user to the products
+  (inventory) page, not the cart page — confirmed against the live app.
+- In both cases the cart badge count is unchanged (the item is not removed).
 
 ### TC05 - Cart clears after order completion
 **Purpose:** Verify the cart is emptied once an order is finished (Business Rule 4).
